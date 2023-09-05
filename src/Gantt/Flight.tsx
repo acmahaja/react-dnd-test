@@ -1,24 +1,36 @@
 // Child.tsx
-import React from 'react';
-import { useDrag } from 'react-dnd';
+import React from "react";
+import { useDrag } from "react-dnd";
+import { FlightDetails } from "./Types";
 
 interface ChildProps {
-  name: string;
+  flight: FlightDetails;
   gate: number;
 }
 
-const Flight: React.FC<ChildProps> = ({ name, gate }) => {
-  const [{isDragging}, drag] = useDrag(()=>({
+const Flight: React.FC<ChildProps> = ({ flight, gate }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: "FLIGHT",
-    item: { type: 'FLIGHT', index: {name, gate} },
+    item: { type: "FLIGHT", index: { flight, gate } },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
-    })
+    }),
   }));
- 
+
   return (
-    <div ref={drag} style={{width: "100px", height: "50px", border: "1px solid black", opacity: isDragging ? "0%" : "100%", cursor: 'move',}} >
-      {name}
+    <div
+      ref={drag}
+      style={{
+        width: `${flight.duration}px`,
+        height: "50px",
+        outline: "1px solid black",
+        opacity: isDragging ? "50%" : "100%",
+        cursor: "move",
+        position: "absolute",
+        left: flight.time
+      }}
+    >
+      {flight.name}
     </div>
   );
 };
