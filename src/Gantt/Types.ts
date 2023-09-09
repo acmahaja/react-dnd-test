@@ -6,5 +6,5 @@ export type FlightDetails = {
 
 export type FlightSchedule = {
   Gate: string;
-  flights: FlightDetails[];
+  flights: FlightDetails[][];
 };
