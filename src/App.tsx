@@ -101,7 +101,7 @@ function App() {
           updatedFlightSchedule[originalGateIndex].flights[row].filter((currFlight: FlightDetails) => currFlight !== flightQuery);
           updatedFlightSchedule[originalGateIndex].flights = updatedFlightSchedule[originalGateIndex].flights.filter((row) => row.length !== 0) 
       }
-      flightQuery.time = newXTime;
+      // flightQuery.time = newXTime;
       const indexToAddFlight:number = findIndexToAddFlight(updatedFlightSchedule[targetGateIndex].flights, flightQuery);      
       if (indexToAddFlight === -1) {
         updatedFlightSchedule[targetGateIndex].flights.push([])  
